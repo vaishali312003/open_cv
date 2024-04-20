@@ -1,9 +1,3 @@
-import subprocess
-
-# Install OpenCV package
-subprocess.call(["pip", "install", "opencv-python-headless"])
-
-# Now import OpenCV
 import cv2
 import streamlit as st
 import numpy as np
