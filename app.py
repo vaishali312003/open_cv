@@ -5,7 +5,7 @@ import numpy as np
 def main():
     st.title("Video Capture with OpenCV")
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
 
     # Check if the webcam is opened successfully
     if not cap.isOpened():
