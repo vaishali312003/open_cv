@@ -5,11 +5,12 @@ import numpy as np
 def main():
     st.title("Video Capture with OpenCV")
 
+    # Use device index 1 for the external camera
     cap = cv2.VideoCapture(1)
 
-    # Check if the webcam is opened successfully
+    # Check if the camera is opened successfully
     if not cap.isOpened():
-        st.error("Error: Could not open webcam")
+        st.error("Error: Could not open camera")
         return
 
     frame_placeholder = st.empty()
