@@ -2,8 +2,16 @@ import cv2
 import streamlit as st
 import numpy as np
 
+# Custom class to maintain session state
+class SessionState:
+    def __init__(self, **kwargs):
+        self.__dict__.update(**kwargs)
+
 def main():
     st.title("Video Capture with OpenCV")
+
+    # Create a session state object
+    session_state = SessionState(stop_button_pressed=False)
 
     cap = cv2.VideoCapture(0)
 
@@ -12,10 +20,9 @@ def main():
         st.error("Error: Could not open webcam")
         return
 
-    stop_button_pressed = st.button("Stop")
     frame_placeholder = st.empty()
 
-    while cap.isOpened() and not stop_button_pressed:
+    while cap.isOpened() and not session_state.stop_button_pressed:
         ret, frame = cap.read()
 
         if not ret:
@@ -26,7 +33,7 @@ def main():
         frame_placeholder.image(frame, channels="BGR")
 
         # Check for the 'q' key to quit the loop
-        if cv2.waitKey(1) & 0xFF == ord('q') or stop_button_pressed:
+        if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
     cap.release()
